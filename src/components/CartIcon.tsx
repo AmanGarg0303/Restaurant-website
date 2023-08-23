@@ -7,7 +7,7 @@ const CartIcon = () => {
     <div>
       <Link href="/cart" className="flex items-center gap-4">
         <div className="relative w-8 h-8 md:w-5 md:h-5">
-          <Image src="/cart.png" alt="" fill />
+          <Image src="/cart.png" alt="" fill className="w-auto h-auto" />
         </div>
         <span>Cart (3)</span>
       </Link>

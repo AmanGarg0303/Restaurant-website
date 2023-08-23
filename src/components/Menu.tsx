@@ -25,6 +25,7 @@ const Menu = () => {
         width={20}
         height={20}
         onClick={() => setOpen(!open)}
+        className="w-auto h-auto"
       />
 
       {open && (
@@ -48,9 +49,9 @@ const Menu = () => {
             {user ? "Orders" : "Login"}
           </Link>
 
-          <Link href="/cart" onClick={() => setOpen(false)}>
+          <div onClick={() => setOpen(false)}>
             <CartIcon />
-          </Link>
+          </div>
         </div>
       )}
     </div>
