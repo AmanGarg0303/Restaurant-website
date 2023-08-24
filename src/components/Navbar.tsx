@@ -3,6 +3,7 @@ import Menu from "./Menu";
 import Link from "next/link";
 import Image from "next/image";
 import CartIcon from "./CartIcon";
+import UserLinks from "./UserLinks";
 
 const Navbar = () => {
   const user = false;
@@ -31,9 +32,7 @@ const Navbar = () => {
           <span>123 456 78</span>
         </div>
 
-        <Link href={user ? "/orders" : "/login"}>
-          {user ? "Orders" : "Login"}
-        </Link>
+        <UserLinks />
 
         <CartIcon />
       </div>
