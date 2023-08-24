@@ -1,0 +1,41 @@
+# services:
+#   db:
+#     image: postgres
+#     restart: always
+#     environment:
+#       POSTGRES_USER: /run/secrets/DOCKER_POSTGRES_USER
+#       POSTGRES_PASSWORD: /run/secrets/DOCKER_POSTGRES_PASSWORD
+#       POSTGRES_DB: /run/secrets/DOCKER_POSTGRES_DB
+
+#     ports:
+#       - 5432:5432
+
+#     env_file:
+#       - .env
+
+#     secrets:
+#       - DOCKER_POSTGRES_USER
+#       - DOCKER_POSTGRES_PASSWORD
+#       - DOCKER_POSTGRES_DB
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: /run/secrets/DOCKER_POSTGRES_USER
+      POSTGRES_PASSWORD: /run/secrets/DOCKER_POSTGRES_PASSWORD
+      POSTGRES_DB: /run/secrets/DOCKER_POSTGRES_DB
+    secrets:
+      - DOCKER_POSTGRES_USER
+      - DOCKER_POSTGRES_PASSWORD
+      - DOCKER_POSTGRES_DB
+    ports:
+      - 5432:5432
+
+secrets:
+  DOCKER_POSTGRES_USER:
+    file: .env
+  DOCKER_POSTGRES_PASSWORD:
+    file: .env
+  DOCKER_POSTGRES_DB:
+    file: .env
