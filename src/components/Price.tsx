@@ -1,42 +1,41 @@
 "use client";
+import { ProductType } from "@/types/types";
 import React, { useEffect, useState } from "react";
 
-type Props = {
-  price: number;
-  id: number;
-  options?: { title: string; additionalPrice: number }[];
-};
-
-const Price = ({ price, id, options }: Props) => {
-  const [total, setTotal] = useState(price);
+const Price = ({ product }: { product: ProductType }) => {
+  const [total, setTotal] = useState(product.price);
   const [quantity, setQuantity] = useState(1);
   const [selected, setSelected] = useState(0);
 
   useEffect(() => {
-    setTotal(
-      quantity * (options ? price + options[selected].additionalPrice : price)
-    );
-  }, [quantity, selected, options, price]);
+    if (product.options?.length) {
+      setTotal(
+        quantity * product.price + product.options[selected].additionalPrice
+      );
+    }
+  }, [quantity, selected, product]);
 
   return (
     <div className="flex flex-col gap-4">
-      <h2 className="text-2xl font-bold">&#8377;{total.toFixed(2)}</h2>
+      <h2 className="text-2xl font-bold">&#8377;{total}</h2>
       {/* options container  */}
 
       <div className="flex gap-4">
-        {options?.map((option, idx) => (
-          <button
-            key={option.title}
-            className="p-2 ring-1 ring-red-400 rounded-md min-w-[6rem]"
-            style={{
-              background: selected === idx ? "rgb(248 113 113)" : "white",
-              color: selected === idx ? "white" : "rgb(239 68 68)",
-            }}
-            onClick={() => setSelected(idx)}
-          >
-            {option.title}
-          </button>
-        ))}
+        {product.options?.length
+          ? product.options?.map((option, idx) => (
+              <button
+                key={option.title}
+                className="p-2 ring-1 ring-red-400 rounded-md min-w-[6rem]"
+                style={{
+                  background: selected === idx ? "rgb(248 113 113)" : "white",
+                  color: selected === idx ? "white" : "rgb(239 68 68)",
+                }}
+                onClick={() => setSelected(idx)}
+              >
+                {option.title}
+              </button>
+            ))
+          : ""}
       </div>
 
       {/* quantity and add button container  */}
