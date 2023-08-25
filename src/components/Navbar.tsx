@@ -6,8 +6,6 @@ import CartIcon from "./CartIcon";
 import UserLinks from "./UserLinks";
 
 const Navbar = () => {
-  const user = false;
-
   return (
     <div className="h-12 text-red-500 p-4 flex justify-between items-center border-b-2 border-b-red-500 uppercase md:h-24 lg:px-20 xl:px-40">
       <div className="hidden md:flex gap-4 flex-1">
